@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engineering Intelligence — AI Prompt Architect</title>
+<meta name="description" content="Transforma um pedido simples num prompt técnico completo: especialidades, normas, segurança, testes e critérios de aceitação.">
+<meta name="theme-color" content="#060b16">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap row">
+    <a class="brand" href="./"><img src="assets/icon.svg" alt="" width="24" height="24"><span>Engineering Intelligence</span></a>
+    <nav class="nav"><a href="#como">Como funciona</a><a class="btn ghost sm" href="https://github.com/ticarollamas-arch/engineering-intelligence" target="_blank" rel="noopener">Código ↗</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">AI PROMPT ARCHITECT</p>
+    <h1>Descreva o que quer construir.<br><span class="grad">Receba o plano técnico.</span></h1>
+    <p class="lead">O motor identifica o tipo de projeto, ativa as especialidades certas, seleciona normas como OWASP, NIST e LGPD só quando se aplicam, e transforma tudo em requisitos verificáveis, com rastreabilidade, revisão crítica e nota de qualidade.</p>
+  </section>
+
+  <section class="card input" aria-labelledby="lbl">
+    <label id="lbl" for="pedido">O que você quer criar, corrigir, pesquisar ou implantar?</label>
+    <textarea id="pedido" rows="4" maxlength="2000" placeholder="Ex.: quero desenvolver uma loja virtual com pagamento por Pix"></textarea>
+    <div class="examples" id="examples" aria-label="Exemplos"></div>
+    <div class="actions">
+      <label class="toggle" id="aiToggle" title="Disponível quando a IA estiver configurada no servidor">
+        <input type="checkbox" id="useAI" disabled><span class="track"></span><span id="aiLabel">Refinar com IA (indisponível)</span>
+      </label>
+      <label class="lvl" for="nivel">Nível
+        <select id="nivel"><option value="">Automático</option><option value="essencial">Essencial</option><option value="profissional">Profissional</option><option value="avancado">Avançado</option><option value="enterprise">Enterprise</option></select>
+      </label>
+      <span class="count" id="count">0/2000</span>
+      <button class="btn pri" id="go" type="button">Gerar prompt</button>
+    </div>
+    <p class="err" id="err" role="alert" hidden></p>
+  </section>
+
+  <section id="result" class="result" hidden aria-live="polite">
+    <p class="note" id="interp" hidden></p>
+    <div class="summary">
+      <div class="card"><h2>Objetivo identificado</h2><p id="rObj"></p><p class="mode"><span class="dot"></span><span id="rMode"></span> · <span id="rSrc"></span></p></div>
+      <div class="card"><h2>Especialidades ativadas</h2><div class="chips" id="rSpec"></div><ul class="cls" id="rCls"></ul></div>
+    </div>
+    <div class="summary">
+      <div class="card"><h2>Normas e referenciais aplicáveis</h2><ul class="refs" id="rRefs"></ul></div>
+      <div class="card quality"><h2>Qualidade do prompt</h2>
+        <div class="score"><b id="qTotal">0</b><span>/100</span></div>
+        <ul class="crit" id="qCrit"></ul>
+        <div class="defs" id="qDefs"></div>
+        <p class="small" id="qAviso"></p>
+      </div>
+    </div>
+    <div class="card prompt">
+      <div class="phead">
+        <h2>Prompt final</h2>
+        <div class="tabs" id="tabs" hidden><button class="tab on" data-t="local" type="button">Motor local</button><button class="tab" data-t="ia" type="button">Refinado por IA</button></div>
+        <div class="pacts"><button class="btn ghost sm" id="copy" type="button">Copiar</button><button class="btn ghost sm" id="dl" type="button">Baixar .md</button></div>
+      </div>
+      <p class="note" id="aiNote" hidden></p>
+      <pre id="rPrompt" tabindex="0"></pre>
+    </div>
+    <div class="card" id="traceCard"><h2>Matriz de rastreabilidade</h2><div class="tablewrap"><table class="trace"><thead><tr><th>Requisito</th><th>Componente</th><th>Controle</th><th>Teste</th><th>Aceitação</th></tr></thead><tbody id="rTrace"></tbody></table></div></div>
+    <div class="card"><h2>Revisão crítica</h2><ul class="checks" id="rChecks"></ul></div>
+    <details class="card learn" id="learnCard"><summary><h2>Aprender com este projeto</h2><span class="small">glossário, fluxo, decisões, comandos e exercícios</span></summary><div id="rLearn"></div></details>
+    <div class="summary">
+      <div class="card"><h2>Entregáveis esperados</h2><ul id="rDel"></ul></div>
+      <div class="card"><h2>Critérios de validação</h2><ul id="rVal"></ul></div>
+    </div>
+  </section>
+
+  <section id="como" class="how">
+    <h2>Como funciona</h2>
+    <ol class="steps">
+      <li><b>Interpretação</b><span>entende pedidos informais e com erros, combina domínios e aponta conflitos e lacunas.</span></li>
+      <li><b>Especialistas</b><span>monta a equipe certa: AppSec, DevSecOps, mobile, dados, IA, infraestrutura.</span></li>
+      <li><b>Requisitos</b><span>gera requisitos com ID, entradas, saídas, aceitação e teste, e só as normas pertinentes.</span></li>
+      <li><b>Revisão</b><span>remove repetições e frases genéricas, revisa a própria saída e dá uma nota explicada.</span></li>
+    </ol>
+    <p class="small">O motor local roda no seu navegador, sem enviar nada. O refinamento por IA, quando ativado pela dona do servidor, tem limite de uso por visitante.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap row">
+    <span>Engineering Intelligence · por <a href="https://cyberhuntlab.com.br">Ana Caroline Lamas</a></span>
+    <span class="small">v<span id="ver">2.0.0</span> · MIT</span>
+  </div>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
