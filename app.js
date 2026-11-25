@@ -67,6 +67,21 @@ function show(a) {
   if (a.interpretacao?.repeticoesNoPedido?.length) notes.push(`Repetições ignoradas: ${a.interpretacao.repeticoesNoPedido.join('; ')}.`);
   if (a.interpretacao?.conflitos?.length) notes.push(`Atenção: ${a.interpretacao.conflitos.join(' ')}`);
   const ip = $('#interp'); ip.textContent = notes.join(' '); ip.hidden = !notes.length;
+  // interpretação semântica: intenção, exemplos, restrições, políticas e o que foi deixado de fora
+  const sm = a.semantica || {};
+  const semItems = [
+    sm.intencao?.length && ['Intenção principal', sm.intencao.slice(0, 2).join(' ')],
+    sm.requisitosImplicitos?.length && ['Requisitos técnicos implícitos', sm.requisitosImplicitos.join('; ')],
+    sm.exemplos?.length && ['Exemplos (não viraram requisito)', sm.exemplos.slice(0, 2).join(' ')],
+    sm.restricoes?.length && ['Restrições', sm.restricoes.join('; ')],
+    sm.politicas?.length && ['Política transversal', sm.politicas.join(', ')],
+    sm.classificacaoDinamica && ['Classificação', 'dinâmica: nenhuma categoria cadastrada representava o pedido'],
+    sm.naoIncluidos?.length && ['Não incluído', sm.naoIncluidos.join('; ')],
+    sm.descartados?.length && ['Categorias descartadas', sm.descartados.map(d => `${d.arquetipo} (${d.motivo})`).join('; ')],
+    sm.perguntaObjetiva && ['Pergunta antes de implementar', sm.perguntaObjetiva],
+  ].filter(Boolean);
+  fill($('#rSem'), semItems, ([k, v]) => { const e = document.createElement('li'); const b = document.createElement('b'); b.textContent = `${k}: `; e.append(b, v); return e; });
+  $('#semCard').hidden = !semItems.length;
   // classificação
   const cls = a.classificacao;
   fill($('#rCls'), cls ? [['Domínio principal', cls.principal], ['Complementares', cls.secundarios.join(', ') || '—'], ['Nível', `${LEVEL_NAMES[a.nivel]}${a.nivel === a.nivelRecomendado ? ' (recomendado)' : ` (recomendado: ${LEVEL_NAMES[a.nivelRecomendado]})`}`]] : [['Nível', LEVEL_NAMES[a.nivel]]], ([k, v]) => { const e = document.createElement('li'); const b = document.createElement('b'); b.textContent = `${k}: `; e.append(b, v); return e; });

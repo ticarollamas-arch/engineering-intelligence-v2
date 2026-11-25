@@ -17,6 +17,10 @@ Entrada: *"qero cria um aplicativo andorid pra vende roupa com pix"*
 
 Cada requisito traz: finalidade, comportamento esperado, entradas, saídas, restrições, critério de aceitação e teste (T-xxx).
 
+## Interpretação semântica (v2.1)
+
+O motor separa intenção, contexto, exemplos, restrições, hipóteses e perguntas antes de classificar o pedido. Exemplos citados ("vamos supor…") não viram requisitos. Palavras soltas não definem a categoria. Quando nenhuma categoria cadastrada serve, o motor monta uma classificação dinâmica. A **soberania tecnológica** (APIs próprias, processamento local, modelos de pesos abertos) é uma política transversal que vale para qualquer projeto. Antes da entrega, uma validação semântica remove o que não foi pedido. Detalhes em [docs/CORRECAO-INTERPRETACAO-SEMANTICA.md](docs/CORRECAO-INTERPRETACAO-SEMANTICA.md).
+
 ## Pipeline do motor
 
 | Etapa | O que faz | Código |

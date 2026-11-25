@@ -1,6 +1,6 @@
 {
   "name": "engineering-intelligence",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "AI Prompt Architect: transforma um pedido simples num prompt técnico completo de engenharia, DevSecOps e AppSec.",
   "type": "module",
   "private": true,
